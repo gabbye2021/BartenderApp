@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BartenderApp.Models.Drink>
+
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title>Drink Menu</title>
+</head>
+<body>
+    <h1>Drink Menu</h1>
+    <p class="text-danger">@TempData["error"]</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.drinkName)
+                <th>
+                    @Html.DisplayNameFor(model => model.drinkDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.drinkPrice)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.drinkName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.drinkDescription)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.drinkPrice)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Add to Order", "addToOrder", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+
+</html>

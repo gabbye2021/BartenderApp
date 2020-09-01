@@ -1,0 +1,33 @@
+﻿@model BartenderApp.Models.Bartender
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<head>
+    <link rel="stylesheet" href="../css/site.css" />
+</head>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/homepage.css" asp-append-version="true" />
+</head>
+
+<div>
+    <body>
+        <h1>Bartender Login</h1><br /><br />
+        <p class="text-danger">@TempData["error"]</p>
+        <form asp-action="LoginAttempt" method="get">
+            <p>@Html.DisplayNameFor(m => m.username): @Html.TextBoxFor(m => m.username)</p><br />
+            <p>@Html.DisplayNameFor(m => m.password): @Html.PasswordFor(m => m.password)</p>
+            <input type="submit" value="Login" name="Login" style="float:right" /><br /> <br />
+        </form>
+
+    </body>
+</div>
+   
+
+
+
+</html>
+

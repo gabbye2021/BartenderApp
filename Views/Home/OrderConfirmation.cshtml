@@ -1,0 +1,66 @@
+﻿@model BartenderApp.Models.Order
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<head>
+    <link rel="stylesheet" href="../css/site.css" />
+</head>
+
+
+<html>
+<body>
+    <h1>Order Confirmation</h1><br/>
+    <form asp-action="confirmedOrder" method="get">
+        <p>@Html.DisplayNameFor(m => m.FirstName): @Html.TextBoxFor(m => m.FirstName)</p><br />
+        <p>@Html.DisplayNameFor(m => m.LastName): @Html.TextBoxFor(m => m.LastName)</p>
+        <table class="table">
+            <thead>
+                @foreach (var item in Model.drinkList)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            <b>@Html.DisplayNameFor(modelItem => item.drinkName)</b>
+                        </td>
+                        <td>
+                            <b> @Html.DisplayNameFor(modelItem => item.drinkDescription)</b>
+                        </td>
+                        <td>
+                            <b> @Html.DisplayNameFor(modelItem => item.drinkPrice)</b>
+                        </td>
+                    </tr>
+                }
+            </thead>
+            <tbody>
+                @foreach (var item in Model.drinkList)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.id, new { drinkID = item.id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drinkName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drinkDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drinkPrice)
+                        </td>>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p style="float:left">@Html.ActionLink("Modify Order", "Menu")</p>
+        <p style="float:right"><b>@Html.DisplayNameFor(m => m.total):</b> $@Html.DisplayFor(m => m.total)</p>
+        <br /><br />
+        <input type="submit" value="Checkout" name="checkout" style="float:right" />
+    </form>
+</body>
+
+</html>
